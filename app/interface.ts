@@ -65,4 +65,5 @@ export interface UserResponse {
     nat: string;
     rating?:number;
     dept?:string;
+    bookmark?:boolean;
   }
