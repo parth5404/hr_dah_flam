@@ -6,6 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getPerformance } from "@/utils/getrandom";
 // Lazy import
 const Perform = React.lazy(() => import("./Perform"));
+const Project = React.lazy(() => import("./Project"));
+const Feedback = React.lazy(() => import("./Feedback"));
 import { ModeToggle } from "./mode-toggle";
 interface PerformanceItem {
   testName: string;
@@ -190,14 +192,14 @@ const Profile = ({ user }: { user: User }) => {
             </div>
           </TabsContent>
           <TabsContent value="projects">
-            <p className="mt-6 text-center text-muted-foreground">
-              Projects content goes here.
-            </p>
+            <Suspense fallback={<div>Loading projects...</div>}>
+              <Project user={user} />
+            </Suspense>
           </TabsContent>
           <TabsContent value="feedback">
-            <p className="mt-6 text-center text-muted-foreground">
-              Feedback content goes here.
-            </p>
+            <Suspense fallback={<div>Loading feedback...</div>}>
+              <Feedback user={user} />
+            </Suspense>
           </TabsContent>
         </Tabs>
       </div>
