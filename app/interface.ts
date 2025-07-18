@@ -66,4 +66,5 @@ export interface UserResponse {
     rating?:number;
     dept?:string;
     bookmark?:boolean;
+    bio?:string;
   }

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { User } from "./interface";
-import { getRandomRating, getRandomDepartment } from "@/utils/getrandom";
+import { getRandomRating, getRandomDepartment,getRandomBio } from "@/utils/getrandom";
 
 export const useStore = create(
   persist<{
@@ -28,6 +28,7 @@ export const useStore = create(
             ...i,
             rating: getRandomRating(),
             dept: getRandomDepartment(),
+            bio: getRandomBio(),
             bookmark: false,
           })),
         })),
