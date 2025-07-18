@@ -4,11 +4,19 @@ import React from "react";
 import { useStore } from "@/app/store";
 import Card_i from "@/components/Card_i";
 import { redirect } from "next/navigation";
-
-const page = () => {
+import { SessionProvider, useSession } from "next-auth/react";
+const Page = () => {
+  return (
+    <SessionProvider>
+      <Page2 />
+    </SessionProvider>
+  );
+};
+function Page2() {
+  const { data: session, status } = useSession();
   const bookmarkBears = useStore.getState().bookmarkBears;
   const bears = useStore.getState().bears;
-  if (!localStorage.getItem("next-auth.session-token")) {
+  if (status === "unauthenticated") {
     return redirect("/api/auth/signin");
   }
   return (
@@ -19,6 +27,5 @@ const page = () => {
           .map((i, idx) => <Card_i key={i.login.uuid} i={i} idx={idx} />)}
     </div>
   );
-};
-
-export default page;
+}
+export default Page;
