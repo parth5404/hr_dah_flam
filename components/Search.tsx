@@ -31,6 +31,7 @@ const Search = () => {
         className="w-1/2"
       />
       <Button onClick={() => handleSearch()}>Search</Button>
+      <Button onClick={() => router.push("/analytics")}>Analytics</Button>
     </div>
   );
 };
