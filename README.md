@@ -22,12 +22,11 @@ An interactive and responsive HR performance dashboard built with Next.js, TypeS
 
 ### 📸 **Screenshots & Demo**
 
-**Light Mode**
-![Light Mode Preview](https://github.com/parth5404/hr_dash_flam/raw/main/images/light.png)
+**Light Mode**  
+<img src="https://github.com/parth5404/hr_dash_flam/raw/main/images/light.png" alt="Light Mode Preview" width="400"/>
 
-**Dark Mode**
-![Dark Mode Preview](https://github.com/parth5404/hr_dash_flam/raw/main/images/dark.png)
----
+**Dark Mode**  
+<img src="https://github.com/parth5404/hr_dash_flam/raw/main/images/dark.png" alt="Dark Mode Preview" width="400"/>
 
 ### 🎯 **Core Features Implemented**
 
