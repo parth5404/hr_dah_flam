@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💼 HR Dashboard (Advanced)
 
-## Getting Started
+An interactive and responsive HR performance dashboard built with Next.js, TypeScript, and Tailwind CSS. This application provides a comprehensive interface for HR managers to track employee performance, manage bookmarks, and view detailed insights.
 
-First, run the development server:
+### 🔧 **Tech Stack**
+
+- **Framework**: [Next.js](https://nextjs.org/) (with App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **UI Components**: [Radix UI](https://www.radix-ui.com/) & [shadcn/ui](https://ui.shadcn.com/)
+- **Charts**: [Recharts](https://recharts.org/)
+- **Authentication**: [NextAuth.js](https://next-auth.js.org/)
+
+---
+
+## 🚀 **Challenge: Build a Mini HR Performance Dashboard**
+
+> You're building a Dashboard for HR Managers to track employee performance, manage bookmarks, and view detailed insights.
+
+---
+
+### 📸 **Screenshots & Demo**
+
+_(Add your screenshots and video demos here)_
+
+**Light Mode**
+![Screenshot-Light](https://via.placeholder.com/800x400.png?text=Light+Mode+Screenshot)
+
+**Dark Mode**
+![Screenshot-Dark](https://via.placeholder.com/800x400.png?text=Dark+Mode+Screenshot)
+
+---
+
+### 🎯 **Core Features Implemented**
+
+#### 1. 🏠 **Dashboard Homepage (`/`)**
+
+- Fetches and displays a list of 20 dummy users from an external API.
+- Renders responsive user cards with:
+  - Full Name, Email, Department, and a randomized performance rating.
+  - Buttons to `View Profile` and `Bookmark`.
+
+#### 2. 🔍 **Search & Filter**
+
+- A sticky header with a search bar to filter users by name, email, or department in real-time.
+- A dropdown menu to filter users by a single department or performance rating.
+- A "Clear Filters" button appears when any filter is active.
+
+#### 3. 👤 **Dynamic User Details Page (`/employee/[id]`)**
+
+- A full-page, responsive profile view with a modern header and user details.
+- A tabbed UI with `Overview`, `Projects`, and `Feedback` sections.
+- Components for each tab are lazy-loaded with `React.Suspense` to improve performance.
+
+#### 4. 📌 **Bookmark Manager (`/bookmarks`)**
+
+- A protected route that lists all bookmarked employees.
+- Includes a "Delete All" button to clear all bookmarks.
+- Displays an elegant empty state when no employees are bookmarked.
+
+#### 5. 📊 **Analytics Page (`/analytics`)**
+
+- A dedicated page for data visualizations.
+- Includes a radar chart showing department-wise average ratings.
+- Includes a bar chart showing a mock trend of new bookmarks over the last 7 days.
+
+---
+
+### ⚙️ **Technical Requirements Met**
+
+- Built with the **Next.js App Router**.
+- Uses **client-side data fetching** for the main user list.
+- **Custom Hooks**:
+  - `useSearch`: For fuzzy-searching employees.
+  - `useAvg`: For calculating average department ratings.
+- **Reusable Components**:
+  - `Card`, `Button`, `Input`, `DropdownMenu`, `Tooltip`, etc.
+- **Responsive Design**: The entire application is fully responsive from mobile to desktop.
+- **Dark/Light Mode**: A theme toggle is available on all pages to switch between light and dark modes.
+
+---
+
+### 🧠 **Advanced Expectations Met**
+
+- **State Management**: Uses **Zustand** for centralized and efficient state management.
+- **Component-level Loading**: Implemented lazy loading for tabbed content on the profile page using `React.Suspense`.
+- **Modular Folder Structure**: The project is organized into `components/`, `hooks/`, `app/`, and `store/` directories.
+- **Form Handling**: A fully functional form is implemented in the "Feedback" tab and the "Create User" page.
+
+---
+
+### ⭐ **Bonus Features Implemented**
+
+- **Authentication**: Implemented a mock login screen using **NextAuth.js**, with the `/bookmark` route protected.
+- **Create User Page**: A full-page form with validation for adding new users to the system.
+
+---
+
+### 📦 **Setup & Installation**
+
+To get a local copy up and running, follow these simple steps.
+
+#### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 18.x or later)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+#### Installation
+
+1.  Clone the repository:
+    ```sh
+    git clone https://github.com/your-username/hr-dashboard.git
+    ```
+2.  Navigate to the project directory:
+    ```sh
+    cd hr-dashboard
+    ```
+3.  Install the dependencies:
+    ```sh
+    npm install
+    ```
+
+#### Running the Application
+
+To run the development server, use the following command:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
