@@ -26,48 +26,62 @@ const Profile = ({ user }: { user: User }) => {
 
   return (
     <>
+      <div className="fixed top-4 left-4 z-50">
+        <ModeToggle />
+      </div>
       <div className="min-h-screen bg-background text-foreground">
         <div className="relative">
-          <div className="h-48 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
-          <ModeToggle />
+          <div className="h-48 bg-gradient-to-r from-primary/10 to-background"></div>
           <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
             <img
               src={user.picture.large}
               alt={user.name.first}
-              className="w-32 h-32 rounded-full border-4 border-background shadow-lg object-cover"
+              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-4 border-background shadow-2xl object-cover"
             />
           </div>
         </div>
 
-        <div className="pt-20 pb-6 text-center">
-          <h1 className="text-4xl font-bold mb-2">
+        <div className="pt-16 sm:pt-20 pb-6 text-center px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-foreground">
             {user.name.title} {user.name.first} {user.name.last}
           </h1>
-          <div className="space-y-3 text-muted-foreground">
-            <div className="flex items-center justify-center gap-2">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <div className="space-y-2 sm:space-y-3 text-muted-foreground">
+            <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
-              <span className="font-medium">{user.email}</span>
+              <span className="font-medium break-all">{user.email}</span>
             </div>
 
-            <div className="flex items-center justify-center gap-2">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fillRule="evenodd"
                   d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                   clipRule="evenodd"
                 />
               </svg>
-              <span>
+              <span className="text-center">
                 {user.location.city}, {user.location.state},{" "}
                 {user.location.country}
               </span>
             </div>
 
-            <div className="flex items-center justify-center gap-2">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
               <span>+{user.phone}</span>
@@ -79,18 +93,33 @@ const Profile = ({ user }: { user: User }) => {
           defaultValue="overview"
           className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          <TabsList className="grid w-full grid-cols-3 bg-muted/80 backdrop-blur-sm">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="projects">Projects</TabsTrigger>
-            <TabsTrigger value="feedback">Feedback</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 bg-muted border">
+            <TabsTrigger
+              value="overview"
+              className="text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-foreground text-sm sm:text-base"
+            >
+              Overview
+            </TabsTrigger>
+            <TabsTrigger
+              value="projects"
+              className="text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-foreground text-sm sm:text-base"
+            >
+              Projects
+            </TabsTrigger>
+            <TabsTrigger
+              value="feedback"
+              className="text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-foreground text-sm sm:text-base"
+            >
+              Feedback
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="overview">
-            <div className="mt-6 grid gap-6 md:grid-cols-5">
-              <div className="md:col-span-3">
-                <div className="p-6 bg-muted/50 rounded-lg border h-full">
-                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
+            <div className="mt-6 space-y-6 lg:space-y-0 lg:grid lg:grid-cols-1 xl:grid-cols-5 lg:gap-6">
+              <div className="xl:col-span-3">
+                <div className="p-4 sm:p-6 bg-card rounded-lg border h-full">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-4 flex items-center gap-3 text-foreground">
                     <svg
-                      className="w-6 h-6 text-primary"
+                      className="w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -104,16 +133,16 @@ const Profile = ({ user }: { user: User }) => {
                     </svg>
                     Bio
                   </h3>
-                  <div className="text-muted-foreground leading-relaxed prose prose-invert max-w-none">
+                  <div className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                     {user.bio}
                   </div>
                 </div>
               </div>
-              <div className="md:col-span-2 space-y-6">
-                <div className="p-6 bg-muted/50 rounded-lg border">
-                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
+              <div className="xl:col-span-2 space-y-6">
+                <div className="p-4 sm:p-6 bg-card rounded-lg border">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-4 flex items-center gap-3 text-foreground">
                     <svg
-                      className="w-6 h-6 text-primary"
+                      className="w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -129,15 +158,15 @@ const Profile = ({ user }: { user: User }) => {
                   </h3>
                   <div className="space-y-4">
                     {user.rating && (
-                      <div className="flex items-center justify-between">
-                        <span className="font-semibold text-muted-foreground">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                        <span className="font-semibold text-muted-foreground text-sm sm:text-base">
                           Rating:
                         </span>
                         <div className="flex gap-1">
                           {Array.from({ length: 5 }).map((_, idx) => (
                             <svg
                               key={idx}
-                              className={`w-5 h-5 ${
+                              className={`w-4 h-4 sm:w-5 sm:h-5 ${
                                 user.rating && idx < user.rating
                                   ? "text-yellow-400"
                                   : "text-muted-foreground/50"
@@ -152,24 +181,24 @@ const Profile = ({ user }: { user: User }) => {
                       </div>
                     )}
                     {user.dept && (
-                      <div className="flex items-center justify-between">
-                        <span className="font-semibold text-muted-foreground">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                        <span className="font-semibold text-muted-foreground text-sm sm:text-base">
                           Department:
                         </span>
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                        <span className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-primary text-primary-foreground self-start sm:self-auto">
                           {user.dept}
                         </span>
                       </div>
                     )}
                   </div>
                 </div>
-                <div className="p-6 bg-muted/50 rounded-lg border">
-                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
+                <div className="p-4 sm:p-6 bg-card rounded-lg border">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-4 flex items-center gap-3 text-foreground">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="w-6 h-6"
+                      className="w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground"
                     >
                       <path
                         fillRule="evenodd"
@@ -184,7 +213,13 @@ const Profile = ({ user }: { user: User }) => {
                     </svg>
                     Performance
                   </h3>
-                  <Suspense fallback={<div>Loading performance...</div>}>
+                  <Suspense
+                    fallback={
+                      <div className="text-muted-foreground text-sm">
+                        Loading performance...
+                      </div>
+                    }
+                  >
                     <Perform arr={performance} />
                   </Suspense>
                 </div>
@@ -192,12 +227,24 @@ const Profile = ({ user }: { user: User }) => {
             </div>
           </TabsContent>
           <TabsContent value="projects">
-            <Suspense fallback={<div>Loading projects...</div>}>
+            <Suspense
+              fallback={
+                <div className="text-muted-foreground text-center py-8">
+                  Loading projects...
+                </div>
+              }
+            >
               <Project user={user} />
             </Suspense>
           </TabsContent>
           <TabsContent value="feedback">
-            <Suspense fallback={<div>Loading feedback...</div>}>
+            <Suspense
+              fallback={
+                <div className="text-muted-foreground text-center py-8">
+                  Loading feedback...
+                </div>
+              }
+            >
               <Feedback user={user} />
             </Suspense>
           </TabsContent>

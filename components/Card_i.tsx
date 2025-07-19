@@ -13,6 +13,7 @@ import { useBookMark } from "@/hooks/useBookMark";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { useStore } from "@/app/store";
+import { toast } from "sonner";
 const Card_i = ({ i, idx }: { i: User; idx: number }) => {
   const router = useRouter();
   const [isbookmark, setIsbookmark] = useState<boolean>(i.bookmark || false);
@@ -22,6 +23,9 @@ const Card_i = ({ i, idx }: { i: User; idx: number }) => {
   function handleBookmark() {
     updateBookmark(i, !isbookmark);
     setIsbookmark((prev) => !prev);
+  }
+  function handlePromote(){
+   alert("Promoted");
   }
 
   return (
@@ -66,7 +70,9 @@ const Card_i = ({ i, idx }: { i: User; idx: number }) => {
         )}
       </Toggle>
       {isbookmark && (
-        <button className="bg-blue-500 text-white p-2 rounded h-8 text-sm cursor-pointer items-center justify-center">
+        <button className="bg-blue-500 text-white p-2 rounded h-8 text-sm cursor-pointer items-center justify-center"
+        onClick={handlePromote}
+        >
           Promote
         </button>
       )}

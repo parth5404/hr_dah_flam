@@ -15,6 +15,7 @@ export const useStore = create(
     updateBookmark: (newBear: User,isbookmark:boolean) => void;
     bookmarking: () => void;
     updateBookmark_v0: (newBear: User) => void;
+    deleteAll:()=>void;
   }>(
     (set) => ({
       bears: [],
@@ -61,6 +62,11 @@ export const useStore = create(
       updateBookmark_v0: (newBear:User) =>
         set((state) => ({
           bookmarkBears: [...state.bookmarkBears,newBear],
+        })),
+      deleteAll: () =>
+        set((state) => ({
+          bears:state.bookmarkBears.filter((i)=>i.bookmark===true).map((i)=>({...i,bookmark:false})),
+          bookmarkBears: []
         })),
     }),
     {
