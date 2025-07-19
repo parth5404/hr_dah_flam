@@ -12,8 +12,9 @@ export const useStore = create(
     updateBears_v0: (newBear: User[]) => void;
     insertRating: () => void;
     filtering: (newBear: User[]) => void;
-    updateBookmark: (newBear: User) => void;
+    updateBookmark: (newBear: User,isbookmark:boolean) => void;
     bookmarking: () => void;
+    updateBookmark_v0: (newBear: User) => void;
   }>(
     (set) => ({
       bears: [],
@@ -33,17 +34,29 @@ export const useStore = create(
           })),
         })),
       filtering: (newBear) => set(() => ({ filteredBears: [...newBear] })),
-      updateBookmark: (newBear) =>
-        set((state) => ({
-          bears: state.bears.map((i) =>
-            i.login.uuid === newBear.login.uuid
-              ? { ...i, bookmark: !i.bookmark }
-              : i
-          ),
-        })),
+      updateBookmark: (newBear, isBookmark) =>
+        set((state) => {
+          let arr = [];
+      
+          if (isBookmark) {
+            newBear.bookmark=true;
+            arr = [...state.bookmarkBears, newBear];
+          } else {
+            newBear.bookmark=false;
+            arr = state.bookmarkBears.filter(
+              (i) => i.login.uuid !== newBear.login.uuid
+            );
+          }
+      
+          return { bookmarkBears: arr };
+        }),
       bookmarking: () =>
         set((state) => ({
-          bookmarkBears: state.bears.filter((i) => i.bookmark),
+          bookmarkBears: [...state.bears.filter((i) => i.bookmark===true)],
+        })),
+      updateBookmark_v0: (newBear:User) =>
+        set((state) => ({
+          bookmarkBears: [...state.bookmarkBears,newBear],
         })),
     }),
     {

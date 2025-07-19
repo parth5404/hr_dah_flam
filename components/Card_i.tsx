@@ -12,13 +12,19 @@ import { Toggle } from "@/components/ui/toggle";
 import { useBookMark } from "@/hooks/useBookMark";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
+import { useStore } from "@/app/store";
 const Card_i = ({ i, idx }: { i: User; idx: number }) => {
   const router = useRouter();
   const [isbookmark, setIsbookmark] = useState<boolean>(i.bookmark || false);
+  const updateBookmark = useStore((state) => state.updateBookmark);
+  const bearsupdate=useStore.getState().bears;
+  console.log(bearsupdate);
   function handleBookmark() {
+    updateBookmark(i,!isbookmark);
+
     setIsbookmark((prev) => !prev);
   }
-  useBookMark(i, isbookmark);
+  
 
   return (
     <div>

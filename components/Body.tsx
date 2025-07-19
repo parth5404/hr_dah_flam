@@ -19,7 +19,7 @@ const Body = () => {
           next: { revalidate: 10 },
         });
         const data1 = await res.json();
-        updateBears([...bears, ...data1.results]);
+        updateBears([...data1.results]);
         insertRating();
       } catch (error) {
         console.log(error);
