@@ -17,14 +17,12 @@ const Card_i = ({ i, idx }: { i: User; idx: number }) => {
   const router = useRouter();
   const [isbookmark, setIsbookmark] = useState<boolean>(i.bookmark || false);
   const updateBookmark = useStore((state) => state.updateBookmark);
-  const bearsupdate=useStore.getState().bears;
-  console.log(bearsupdate);
+  const bearsupdate = useStore.getState().bears;
+  
   function handleBookmark() {
-    updateBookmark(i,!isbookmark);
-
+    updateBookmark(i, !isbookmark);
     setIsbookmark((prev) => !prev);
   }
-  
 
   return (
     <div>
@@ -67,7 +65,11 @@ const Card_i = ({ i, idx }: { i: User; idx: number }) => {
           </svg>
         )}
       </Toggle>
-      {isbookmark && <button className="bg-blue-500 text-white p-2 rounded h-8 text-sm cursor-pointer items-center justify-center">Promote</button>}
+      {isbookmark && (
+        <button className="bg-blue-500 text-white p-2 rounded h-8 text-sm cursor-pointer items-center justify-center">
+          Promote
+        </button>
+      )}
       <Card
         key={idx}
         onClick={() => router.push(`/employee/${i.login.uuid}`)}

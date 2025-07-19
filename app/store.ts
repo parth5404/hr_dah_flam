@@ -36,15 +36,19 @@ export const useStore = create(
       filtering: (newBear) => set(() => ({ filteredBears: [...newBear] })),
       updateBookmark: (newBear, isBookmark) =>
         set((state) => {
-          let arr = [];
+          const bearToUpdate = { ...newBear, bookmark: isBookmark };
+          let arr;
       
           if (isBookmark) {
-            newBear.bookmark=true;
-            arr = [...state.bookmarkBears, newBear];
+            const exists = state.bookmarkBears.some(
+              (b) => b.login.uuid === bearToUpdate.login.uuid
+            );
+            arr = exists
+              ? state.bookmarkBears
+              : [...state.bookmarkBears, bearToUpdate];
           } else {
-            newBear.bookmark=false;
             arr = state.bookmarkBears.filter(
-              (i) => i.login.uuid !== newBear.login.uuid
+              (b) => b.login.uuid !== bearToUpdate.login.uuid
             );
           }
       

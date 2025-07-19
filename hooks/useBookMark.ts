@@ -1,11 +1,19 @@
 "use client"
-
 import { useStore } from "@/app/store";
 import { User } from "@/app/interface";
-import { useEffect } from "react";
-export const useBookMark = (user: User, value: boolean) => {
+import { useEffect, useRef } from "react";
+
+export const useBookMark = (user: User, isBookmark: boolean) => {
   const updateBookmark = useStore((state) => state.updateBookmark);
+  const prevRef = useRef<boolean | null>(null);
   useEffect(() => {
-    updateBookmark(user);
-  }, [value]);
+    if (prevRef.current === null) {
+      prevRef.current = isBookmark;
+      return;
+    }
+    if (prevRef.current !== isBookmark) {
+      updateBookmark(user, isBookmark);
+      prevRef.current = isBookmark;
+    }
+  }, [isBookmark, updateBookmark, user]);
 };
