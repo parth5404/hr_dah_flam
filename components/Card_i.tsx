@@ -19,13 +19,18 @@ const Card_i = ({ i, idx }: { i: User; idx: number }) => {
   const [isbookmark, setIsbookmark] = useState<boolean>(i.bookmark || false);
   const updateBookmark = useStore((state) => state.updateBookmark);
   const bearsupdate = useStore.getState().bears;
-  
+  const [promoted,setPromoted]=useState<string>("Promote");
   function handleBookmark() {
     updateBookmark(i,!isbookmark);
     setIsbookmark((prev) => !prev);
   }
   function handlePromote(){
-   alert("Promoted");
+    if(promoted==="Promote"){
+      setPromoted("Promoted");
+    }
+    else{
+      setPromoted("Promote");
+    }
   }
 
   return (
@@ -70,10 +75,11 @@ const Card_i = ({ i, idx }: { i: User; idx: number }) => {
         )}
       </Toggle>
       {isbookmark && (
-        <button className="bg-blue-500 text-white p-2 rounded h-8 text-sm cursor-pointer items-center justify-center"
-        onClick={handlePromote}
+        <button 
+          className={`${promoted === "Promoted" ? "bg-green-500" : "bg-blue-500"} text-white p-2 rounded h-8 text-sm cursor-pointer items-center justify-center`}
+          onClick={handlePromote}
         >
-          Promote
+          {promoted}
         </button>
       )}
       <Card

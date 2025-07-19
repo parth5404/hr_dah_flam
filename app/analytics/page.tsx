@@ -1,7 +1,7 @@
 import React from "react";
 import { ChartRadarGridNone } from "@/components/Charts";
 import { ModeToggle } from "../../components/mode-toggle";
-
+import { BookmarkTrendChart } from "@/components/BookmarkChart";
 const Page = () => {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 sm:p-6 lg:p-8">
@@ -19,6 +19,9 @@ const Page = () => {
       <div className="grid gap-8">
         <section>
           <ChartRadarGridNone />
+        </section>
+        <section>
+          <BookmarkTrendChart />
         </section>
       </div>
     </div>
