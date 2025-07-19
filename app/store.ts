@@ -1,7 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { User } from "./interface";
-import { getRandomRating, getRandomDepartment,getRandomBio } from "@/utils/getrandom";
+import {
+  getRandomRating,
+  getRandomDepartment,
+  getRandomBio,
+} from "@/utils/getrandom";
 
 export const useStore = create(
   persist<{
@@ -12,10 +16,11 @@ export const useStore = create(
     updateBears_v0: (newBear: User[]) => void;
     insertRating: () => void;
     filtering: (newBear: User[]) => void;
-    updateBookmark: (newBear: User,isbookmark:boolean) => void;
+    updateBookmark: (newBear: User, isbookmark: boolean) => void;
     bookmarking: () => void;
     updateBookmark_v0: (newBear: User) => void;
-    deleteAll:()=>void;
+    deleteAll: () => void;
+    homefiltering: (dept: string, rating: number) => void;
   }>(
     (set) => ({
       bears: [],
@@ -39,7 +44,7 @@ export const useStore = create(
         set((state) => {
           const bearToUpdate = { ...newBear, bookmark: isBookmark };
           let arr;
-      
+
           if (isBookmark) {
             const exists = state.bookmarkBears.some(
               (b) => b.login.uuid === bearToUpdate.login.uuid
@@ -52,22 +57,35 @@ export const useStore = create(
               (b) => b.login.uuid !== bearToUpdate.login.uuid
             );
           }
-      
+
           return { bookmarkBears: arr };
         }),
       bookmarking: () =>
         set((state) => ({
-          bookmarkBears: [...state.bears.filter((i) => i.bookmark===true)],
+          bookmarkBears: [...state.bears.filter((i) => i.bookmark === true)],
         })),
-      updateBookmark_v0: (newBear:User) =>
+      updateBookmark_v0: (newBear: User) =>
         set((state) => ({
-          bookmarkBears: [...state.bookmarkBears,newBear],
+          bookmarkBears: [...state.bookmarkBears, newBear],
         })),
       deleteAll: () =>
         set((state) => ({
-          bears:state.bookmarkBears.filter((i)=>i.bookmark===true).map((i)=>({...i,bookmark:false})),
-          bookmarkBears: []
+          bears: state.bookmarkBears
+            .filter((i) => i.bookmark === true)
+            .map((i) => ({ ...i, bookmark: false })),
+          bookmarkBears: [],
         })),
+      homefiltering: (dept?: string, rating?: number) =>
+        set((state) => {
+          let arr: User[] = state.bears;
+          if (dept) {
+            arr = arr.filter((i) => i.dept === dept);
+          }
+          if (rating) {
+            arr = arr.filter((i) => i.rating === rating);
+          }
+          return { filteredBears: arr };
+        }),
     }),
     {
       name: "zustand-user-store", // key in localStorage

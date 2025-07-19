@@ -21,7 +21,7 @@ const Card_i = ({ i, idx }: { i: User; idx: number }) => {
   const bearsupdate = useStore.getState().bears;
   
   function handleBookmark() {
-    updateBookmark(i, !isbookmark);
+    updateBookmark(i,!isbookmark);
     setIsbookmark((prev) => !prev);
   }
   function handlePromote(){
