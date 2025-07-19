@@ -22,8 +22,6 @@ An interactive and responsive HR performance dashboard built with Next.js, TypeS
 
 ### 📸 **Screenshots & Demo**
 
-_(Add your screenshots and video demos here)_
-
 **Light Mode**
 ![Light Mode Preview](https://github.com/parth5404/hr_dash_flam/raw/main/images/light.png)
 
@@ -109,11 +107,11 @@ To get a local copy up and running, follow these simple steps.
 
 1.  Clone the repository:
     ```sh
-    git clone https://github.com/your-username/hr-dashboard.git
+    git clone https://github.com/your-username/hr_dash_flam.git
     ```
 2.  Navigate to the project directory:
     ```sh
-    cd hr-dashboard
+    cd hr_dash_flam
     ```
 3.  Install the dependencies:
     ```sh
