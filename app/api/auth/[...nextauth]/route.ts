@@ -4,10 +4,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const handler = NextAuth({
 providers: [
   CredentialsProvider({
-    name: "Credentials",
+    name: "Credentials (Guest)",
     credentials: {
-      username: { label: "Username", type: "text", placeholder: "Username" },
-      password: { label: "Password", type: "password" , placeholder: "Password"}
+      username: { label: "Username", type: "text", placeholder: "Guest" },
+      password: { label: "Password", type: "password" , placeholder: "Guest"}
     },
     async authorize(credentials, req) {
       const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
