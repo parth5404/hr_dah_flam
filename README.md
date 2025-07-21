@@ -1,4 +1,4 @@
-# 💼 HR Dashboard (Advanced)
+ok# 💼 HR Dashboard (Advanced)
 
 An interactive and responsive HR performance dashboard built with Next.js, TypeScript, and Tailwind CSS. This application provides a comprehensive interface for HR managers to track employee performance, manage bookmarks, and view detailed insights.
 
@@ -38,7 +38,8 @@ An interactive and responsive HR performance dashboard built with Next.js, TypeS
 - Fetches and displays a list of 20 dummy users from an external API.
 - Renders responsive user cards with:
   - Full Name, Email, Department, and a randomized performance rating.
-  - Buttons to `View Profile` and `Bookmark`.
+  - Click on the card to view Profile
+  - Click on the bookmark Icon to Bookmark it, along with it there is Promote functionality given.
 
 #### 2. 🔍 **Search & Filter**
 
